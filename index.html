@@ -1,1 +1,100 @@
-Hello world!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Math Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .quiz-button {
+            padding: 20px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 8px;
+            background-color: #2196F3;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        
+        .quiz-button:hover {
+            transform: translateY(-3px);
+            background-color: #1976D2;
+        }
+        
+        .quiz-button:active {
+            transform: translateY(1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to My Math Page</h1>
+        <p>Choose a quiz to test your arithmetic skills!</p>
+    </div>
+
+    <div class="quiz-grid">
+        <button class="quiz-button" onclick="navigateToQuiz('addition')">
+            Addition Quiz
+        </button>
+        <button class="quiz-button" onclick="navigateToQuiz('subtraction')">
+            Subtraction Quiz
+        </button>
+        <button class="quiz-button" onclick="navigateToQuiz('multiplication')">
+            Multiplication Quiz
+        </button>
+        <button class="quiz-button" onclick="navigateToQuiz('division')">
+            Division Quiz
+        </button>
+        <button class="quiz-button" onclick="navigateToQuiz('mixed')">
+            Mixed Operations
+        </button>
+        <button class="quiz-button" onclick="navigateToQuiz('fractions')">
+            Fractions
+        </button>
+        <button class="quiz-button" onclick="navigateToQuiz('decimals')">
+            Decimals
+        </button>
+        <button class="quiz-button" onclick="navigateToQuiz('percentages')">
+            Percentages
+        </button>
+        <button class="quiz-button" onclick="navigateToQuiz('squares')">
+            Square Numbers
+        </button>
+        <button class="quiz-button" onclick="navigateToQuiz('tables')">
+            Times Tables
+        </button>
+    </div>
+
+    <script>
+        function navigateToQuiz(quizType) {
+            // This will be updated when we create the individual quiz pages
+            alert(`Navigating to ${quizType} quiz... (Page will be created in next step)`);
+            // Will be updated to: window.location.href = `${quizType}.html`;
+        }
+    </script>
+</body>
+</html>
