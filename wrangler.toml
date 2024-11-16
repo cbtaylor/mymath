@@ -1,0 +1,8 @@
+name = "mymath"
+main = "index.html"
+
+[
+site
+]
+bucket = "/"
+include = ["*.html"]
