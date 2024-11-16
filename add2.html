@@ -211,15 +211,19 @@
             const userAnswer = parseInt(answerDisplay.textContent);
             
             if (userAnswer === currentProblem.answer) {
+                // Correct answer
                 answerDisplay.classList.add('answer-correct');
                 answerDisplay.classList.remove('answer-incorrect');
                 // Show next button and hide submit button
                 document.getElementById('submit-btn').style.display = 'none';
                 document.getElementById('next-btn').style.display = 'block';
             } else {
+                // Incorrect answer - show red feedback briefly before clearing
                 answerDisplay.classList.add('answer-incorrect');
                 answerDisplay.classList.remove('answer-correct');
-                clearAnswer();
+                setTimeout(() => {
+                    clearAnswer();
+                }, 500);
             }
         }
 
