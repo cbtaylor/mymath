@@ -1,8 +1,7 @@
 name = "mymath"
 main = "index.html"
 
-[
-site
-]
+[site]
 bucket = "/"
+pages_build_output_dir = "/"
 include = ["*.html"]
