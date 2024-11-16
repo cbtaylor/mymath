@@ -3,6 +3,7 @@
     "includeFiles": [
       "index.html",
       "add1.html",
+      "wrangler.toml",
       "_routes.json"
     ]
   }
