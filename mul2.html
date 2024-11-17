@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hard Multiplication Quiz - My Math Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .quiz-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .problem {
+            font-size: 2em;
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .answer-display {
+            font-size: 1.5em;
+            text-align: center;
+            min-height: 40px;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .answer-correct {
+            background-color: #C8E6C9;
+            border-color: #4CAF50;
+        }
+
+        .answer-incorrect {
+            background-color: #FFCDD2;
+            border-color: #F44336;
+        }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .key {
+            padding: 15px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 8px;
+            background-color: #2196F3;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .key:hover {
+            background-color: #1976D2;
+        }
+
+        .key.back {
+            background-color: #FFA726;
+        }
+
+        .key.back:hover {
+            background-color: #FB8C00;
+        }
+
+        .submit-btn, .next-btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto;
+            padding: 15px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .submit-btn {
+            background-color: #4CAF50;
+        }
+
+        .submit-btn:hover {
+            background-color: #388E3C;
+        }
+
+        .next-btn {
+            background-color: #FF9800;
+            display: none;
+        }
+
+        .next-btn:hover {
+            background-color: #F57C00;
+        }
+
+        .back-to-menu {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #2196F3;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Hard Multiplication Quiz</h1>
+        <p>Solve these multiplication problems!</p>
+    </div>
+
+    <div class="quiz-container">
+        <div class="problem" id="problem"></div>
+        <div class="answer-display" id="answer"></div>
+        
+        <div class="keypad">
+            <button class="key" onclick="appendDigit('1')">1</button>
+            <button class="key" onclick="appendDigit('2')">2</button>
+            <button class="key" onclick="appendDigit('3')">3</button>
+            <button class="key" onclick="appendDigit('4')">4</button>
+            <button class="key" onclick="appendDigit('5')">5</button>
+            <button class="key" onclick="appendDigit('6')">6</button>
+            <button class="key" onclick="appendDigit('7')">7</button>
+            <button class="key" onclick="appendDigit('8')">8</button>
+            <button class="key" onclick="appendDigit('9')">9</button>
+            <button class="key back" onclick="backspace()">←</button>
+            <button class="key" onclick="appendDigit('0')">0</button>
+            <button class="key back" onclick="clearAnswer()">C</button>
+        </div>
+
+        <button class="submit-btn" id="submit-btn" onclick="checkAnswer()">Submit</button>
+        <button class="next-btn" id="next-btn" onclick="nextProblem()">Next Problem</button>
+        <a href="index.html" class="back-to-menu">Back to Menu</a>
+    </div>
+
+    <script>
+        let currentProblem = {
+            num1: 0,
+            num2: 0,
+            answer: 0
+        };
+
+        function generateProblem() {
+            // Generate smaller number between 5 and 25
+            currentProblem.num1 = Math.floor(Math.random() * 21) + 5;  // 5 to 25
+            
+            // Generate larger number between 15 and 50
+            currentProblem.num2 = Math.floor(Math.random() * 36) + 15;  // 15 to 50
+            
+            // Randomly decide which number to show first
+            if (Math.random() < 0.5) {
+                [currentProblem.num1, currentProblem.num2] = [currentProblem.num2, currentProblem.num1];
+            }
+            
+            currentProblem.answer = currentProblem.num1 * currentProblem.num2;
+            
+            // Display the problem
+            document.getElementById('problem').textContent = 
+                `${currentProblem.num1} × ${currentProblem.num2} = ?`;
+            
+            // Clear the answer display
+            clearAnswer();
+            
+            // Reset display and buttons
+            const answerDisplay = document.getElementById('answer');
+            answerDisplay.classList.remove('answer-correct', 'answer-incorrect');
+            document.getElementById('submit-btn').style.display = 'block';
+            document.getElementById('next-btn').style.display = 'none';
+        }
+
+        function appendDigit(digit) {
+            const answerDisplay = document.getElementById('answer');
+            if (answerDisplay.textContent.length < 4) { // Maximum answer would be 50 × 25 = 1250
+                answerDisplay.textContent += digit;
+            }
+        }
+
+        function backspace() {
+            const answerDisplay = document.getElementById('answer');
+            answerDisplay.textContent = answerDisplay.textContent.slice(0, -1);
+        }
+
+        function clearAnswer() {
+            const answerDisplay = document.getElementById('answer');
+            answerDisplay.textContent = '';
+            answerDisplay.classList.remove('answer-correct', 'answer-incorrect');
+        }
+
+        function checkAnswer() {
+            const answerDisplay = document.getElementById('answer');
+            const userAnswer = parseInt(answerDisplay.textContent);
+            
+            if (userAnswer === currentProblem.answer) {
+                // Correct answer
+                answerDisplay.classList.add('answer-correct');
+                answerDisplay.classList.remove('answer-incorrect');
+                // Show next button and hide submit button
+                document.getElementById('submit-btn').style.display = 'none';
+                document.getElementById('next-btn').style.display = 'block';
+            } else {
+                // Incorrect answer - show red feedback briefly before clearing
+                answerDisplay.classList.add('answer-incorrect');
+                answerDisplay.classList.remove('answer-correct');
+                setTimeout(() => {
+                    clearAnswer();
+                }, 500);
+            }
+        }
+
+        function nextProblem() {
+            generateProblem();
+        }
+
+        // Initialize with first problem when page loads
+        window.onload = generateProblem;
+    </script>
+</body>
+</html>
