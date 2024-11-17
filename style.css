@@ -2,22 +2,32 @@ body {
     font-family: Arial, sans-serif;
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px 20px;
     background-color: #f5f5f5;
 }
 
 .header {
     text-align: center;
-    padding: 20px;
+    padding: 10px;
     background-color: #4CAF50;
     color: white;
     border-radius: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+}
+
+.header h1 {
+    margin: 0 0 5px 0;
+    font-size: 1.8em;
+}
+
+.header p {
+    margin: 0;
+    font-size: 1em;
 }
 
 .quiz-container {
     background-color: white;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -25,8 +35,8 @@ body {
 .problem {
     font-size: 2em;
     text-align: center;
-    margin: 20px 0;
-    padding: 20px;
+    margin: 15px 0;
+    padding: 15px;
     background-color: #f8f9fa;
     border-radius: 8px;
 }
@@ -35,7 +45,7 @@ body {
     font-size: 1.5em;
     text-align: center;
     min-height: 40px;
-    margin: 20px 0;
+    margin: 15px 0;
     padding: 10px;
     background-color: #fff;
     border: 2px solid #ddd;
@@ -88,7 +98,7 @@ body {
     display: block;
     width: 100%;
     max-width: 300px;
-    margin: 20px auto;
+    margin: 15px auto;
     padding: 15px;
     font-size: 1.2em;
     border: none;
@@ -118,17 +128,17 @@ body {
 .back-to-menu {
     display: block;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 15px;
     color: #2196F3;
     text-decoration: none;
 }
 
-/* Additional styles for the main menu page */
+/* Main menu page styles */
 .quiz-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    gap: 15px;
+    padding: 15px;
 }
 
 .quiz-button {
