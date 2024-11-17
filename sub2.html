@@ -169,12 +169,19 @@
         };
 
         function generateProblem() {
-            // Generate first number (100-999)
-            currentProblem.num1 = Math.floor(Math.random() * 900) + 100;
+            // Generate first number (300-999 to ensure meaningful problems)
+            currentProblem.num1 = Math.floor(Math.random() * 700) + 300;
             
-            // Generate second number (10-99, but less than num1) to ensure positive result
-            const maxSecond = Math.min(99, currentProblem.num1 - 1);
-            currentProblem.num2 = Math.floor(Math.random() * (maxSecond - 10 + 1)) + 10;
+            // Random choice between 2 and 3 digits for second number
+            const useThreeDigits = Math.random() < 0.5;
+            
+            if (useThreeDigits) {
+                // Generate 3-digit number less than num1
+                currentProblem.num2 = Math.floor(Math.random() * (currentProblem.num1 - 100)) + 100;
+            } else {
+                // Generate 2-digit number
+                currentProblem.num2 = Math.floor(Math.random() * 90) + 10;
+            }
             
             currentProblem.answer = currentProblem.num1 - currentProblem.num2;
             
