@@ -107,7 +107,8 @@
 
         function appendDigit(digit) {
             const answerDisplay = document.getElementById('answer');
-            const maxLength = (currentProblem.operator === '+') ? 3 : 2;
+            // Allow 3 digits for addition and multiplication, 2 for others
+            const maxLength = (currentProblem.operator === '+' || currentProblem.operator === '×') ? 3 : 2;
             if (answerDisplay.textContent.length < maxLength) {
                 answerDisplay.textContent += digit;
             }
