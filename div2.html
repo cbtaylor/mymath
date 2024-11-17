@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- [Previous head content remains exactly the same] -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hard Division Quiz - My Math Page</title>
     <style>
+        /* [All previous styles remain exactly the same] */
         body {
             font-family: Arial, sans-serif;
             max-width: 800px;
@@ -169,14 +171,18 @@
         };
 
         function generateProblem() {
-            // First decide what the answer (quotient) will be (3-30)
-            currentProblem.answer = Math.floor(Math.random() * 28) + 3;  // 3 to 30
-            
-            // Generate divisor (3-25)
-            currentProblem.divisor = Math.floor(Math.random() * 23) + 3;  // 3 to 25
-            
-            // Calculate dividend (answer × divisor, which will be ≤ 750)
-            currentProblem.dividend = currentProblem.answer * currentProblem.divisor;
+            do {
+                // First decide what the answer (quotient) will be (3-30)
+                currentProblem.answer = Math.floor(Math.random() * 28) + 3;  // 3 to 30
+                
+                // Generate divisor (3-25)
+                currentProblem.divisor = Math.floor(Math.random() * 23) + 3;  // 3 to 25
+                
+                // Calculate dividend (answer × divisor)
+                currentProblem.dividend = currentProblem.answer * currentProblem.divisor;
+                
+                // Repeat if dividend is less than 50
+            } while (currentProblem.dividend < 50);
             
             // Display the problem
             document.getElementById('problem').textContent = 
