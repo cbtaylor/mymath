@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @property --a {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+
+        .card {
+            overflow: hidden;
+            position: relative;
+            width: Min(12.5em, 80vmin);
+            aspect-ratio: 1.8;
+            border-radius: .5em;
+            place-self: center;
+            place-content: center;
+            padding: .5em;
+            color: #ededed;
+            font: clamp(1em, 2vw + 2vh, 2em) sans-serif;
+            text-align: center;
+            /*text-transform: uppercase;*/
+            text-wrap: balance;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .card::before {
+            position: absolute;
+            z-index: -1;
+            inset: -1em;
+            border: solid 1.25em;
+            border-image: conic-gradient(
+                from var(--a),
+                #669900, #99cc33, #ccee66,
+                #006699, #3399cc, #990066,
+                #cc3399, #ff6600, #ff9900,
+                #ffcc00, #669900
+            ) 1;
+            filter: blur(.75em);
+            animation: a 4s linear infinite;
+            content: '';
+        }
+
+        @keyframes a { 
+            to { 
+                --a: 1turn 
+            } 
+        }
+
+        html { 
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background-color: #212121;
+            margin: 0;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">Created by Brian Taylor</div>
+</body>
+</html>
